@@ -84,7 +84,7 @@ gen: gen-dbmodel gen-api backend/format ## 生成系のコマンドを実行
 
 .PHONY: gen-dbmodel
 gen-dbmodel: clean-dbmodel ## DBモデルを生成
-	@go run -mod=mod github.com/xo/xo schema $(DATABASE_URL) --out backend/db_model -e *.created_at -e *.updated_at --src backend/db_model/templates/go --go-import="habit/backend/pkg/tenant"
+	@go run -mod=mod github.com/xo/xo schema $(DATABASE_URL) --out backend/db_model -e *.created_at -e *.updated_at --src backend/db_model/templates/go 
 
 .PHONY: clean-dbmodel
 clean-dbmodel: ## DBモデルを削除
