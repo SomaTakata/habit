@@ -8,10 +8,15 @@ require (
 	github.com/99designs/gqlgen v0.17.53
 	github.com/amacneil/dbmate/v2 v2.21.0
 	github.com/golangci/golangci-lint v1.61.0
+	github.com/kenshaw/inflector v0.2.0
+	github.com/kenshaw/snaker v0.2.0
+	github.com/pkg/errors v0.9.1
 	github.com/uber-go/gopatch v0.4.0
 	github.com/vektah/gqlparser/v2 v2.5.16
 	github.com/xo/xo v1.0.2
 	golang.org/x/tools v0.25.0
+	gorm.io/gorm v1.25.12
+	mvdan.cc/gofumpt v0.7.0
 )
 
 require (
@@ -135,8 +140,6 @@ require (
 	github.com/joho/godotenv v1.5.1 // indirect
 	github.com/julz/importas v0.1.0 // indirect
 	github.com/karamaru-alpha/copyloopvar v1.1.0 // indirect
-	github.com/kenshaw/inflector v0.2.0 // indirect
-	github.com/kenshaw/snaker v0.2.0 // indirect
 	github.com/kisielk/errcheck v1.7.0 // indirect
 	github.com/kkHAIKE/contextcheck v1.1.5 // indirect
 	github.com/klauspost/compress v1.17.9 // indirect
@@ -177,7 +180,6 @@ require (
 	github.com/pelletier/go-toml/v2 v2.2.3 // indirect
 	github.com/pierrec/lz4/v4 v4.1.21 // indirect
 	github.com/pkg/diff v0.0.0-20210226163009-20ebb0f2a09e // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/polyfloyd/go-errorlint v1.6.0 // indirect
 	github.com/prometheus/client_golang v1.12.1 // indirect
@@ -270,8 +272,6 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gorm.io/driver/bigquery v1.2.0 // indirect
-	gorm.io/gorm v1.25.12 // indirect
 	honnef.co/go/tools v0.5.1 // indirect
-	mvdan.cc/gofumpt v0.7.0 // indirect
 	mvdan.cc/unparam v0.0.0-20240528143540-8a5130ca722f // indirect
 )
