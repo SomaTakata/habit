@@ -5,7 +5,9 @@
     "pnpm@9",
     "postgresql@16",
     "go@1.22.5",
-    "pueue@3.4.1"
+    "pueue@3.4.1",
+    "process-compose@1.9.0",
+    "air@1.52.0"
   ],
   "shell": {
     "init_hook": [
