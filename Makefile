@@ -4,10 +4,10 @@ export PATH := $(GOBIN):$(PATH)
 
 # RDB Connection Parameters
 RDB_HOST ?= 127.0.0.1
-RDB_PORT ?= 5432
-RDB_USER ?= root
+RDB_PORT ?= 3307
+RDB_USER ?= ts221
 RDB_PASS ?=
-RDB_NAME ?= habit
+RDB_NAME ?= postgres
 DBMATE_DB_SCHEMA ?= "backend"
 DATABASE_URL := postgres://$(RDB_USER):$(RDB_PASS)@$(RDB_HOST):$(RDB_PORT)/$(RDB_NAME)?sslmode=disable
 
