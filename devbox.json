@@ -15,19 +15,17 @@
       "./devbox/init.sh"
     ],
     "scripts": {
-      "test": [
-        "echo \"Error: no test specified\" && exit 1"
-      ]
+      "test": ["echo \"Error: no test specified\" && exit 1"]
     }
   },
   "env": {
-    "GOENV":                   "off",
-    "PATH":                    "$PWD/bin:$PATH",
-    "POSTGRESQL_HOME":         "$PWD/devbox/postgresql",
-    "POSTGRESQL_DATA_DIR":     "$PWD/devbox/postgresql/data",
-    "POSTGRESQL_UNIX_PORT":    "/tmp/habit_postgresql.sock",
-    "POSTGRESQL_PORT":         "3307",
+    "GOENV": "off",
+    "PATH": "$PWD/bin:$PATH",
+    "POSTGRESQL_HOME": "$PWD/devbox/postgresql",
+    "POSTGRESQL_DATA_DIR": "$PWD/devbox/postgresql/data",
+    "POSTGRESQL_UNIX_PORT": "/tmp/habit_postgresql.sock",
+    "POSTGRESQL_PORT": "5432",
     "DEVBOX_COREPACK_ENABLED": "true",
-    "SKIP_INIT":               "false"
+    "SKIP_INIT": "false"
   }
 }
