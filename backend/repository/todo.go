@@ -3,10 +3,10 @@ package repository
 import (
 	"context"
 
-	"github.com/SomaTakata/habit/backend/graph/model"
+	"github.com/SomaTakata/habit/backend/db_model"
 	"gorm.io/gorm"
 )
 
 type Todo interface {
-	List(ctx context.Context, db *gorm.DB) ([]*model.Todo, error)
+	List(ctx context.Context, db *gorm.DB) ([]*db_model.Todo, error)
 }

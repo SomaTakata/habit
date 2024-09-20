@@ -12,7 +12,12 @@ import (
 
 // Todos is the resolver for the todos field.
 func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	return r.TodoSvc.List(ctx)
+	todos, err := r.TodoSvc.List(ctx)
+	if err != nil {
+		return nil, err
+	}
+	res := make([]*model.Todo, 0, len(todos))
+	return res, nil
 }
 
 // Query returns QueryResolver implementation.

@@ -3,7 +3,8 @@ package service
 import (
 	"context"
 
-	"github.com/SomaTakata/habit/backend/graph/model"
+	"github.com/SomaTakata/habit/backend/db_model"
+	"github.com/SomaTakata/habit/backend/pkg/errors"
 	"github.com/SomaTakata/habit/backend/repository"
 	"gorm.io/gorm"
 )
@@ -19,6 +20,10 @@ func NewTodo(db *gorm.DB, todoRepo repository.Todo) Todo {
 		todoRepo: todoRepo,
 	}
 }
-func (s *Todo) List(ctx context.Context) ([]*model.Todo, error) {
-	return s.todoRepo.List(ctx, s.db)
+func (s *Todo) List(ctx context.Context) ([]*db_model.Todo, error) {
+	rows, err := s.todoRepo.List(ctx, s.db)
+	if err != nil {
+		return nil, errors.Wrap(err)
+	}
+	return rows, nil
 }
