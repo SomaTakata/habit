@@ -7,7 +7,7 @@ import (
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
-	"github.com/SomaTakata/habit/graph"
+	"github.com/SomaTakata/habit/backend/graph"
 )
 
 const defaultPort = "8080"
