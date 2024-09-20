@@ -286,6 +286,54 @@
           "store_path": "/nix/store/1gax5xs6h1b70gk7z274kx4qh04hsn96-postgresql-16.4"
         }
       }
+    },
+    "pueue@3.4.1": {
+      "last_modified": "2024-09-10T15:01:03Z",
+      "resolved": "github:NixOS/nixpkgs/5ed627539ac84809c78b2dd6d26a5cebeb5ae269#pueue",
+      "source": "devbox-search",
+      "version": "3.4.1",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/8ap2aq4mhfknhckn1r2vylf2bplkh8c8-pueue-3.4.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/8ap2aq4mhfknhckn1r2vylf2bplkh8c8-pueue-3.4.1"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/6dxs0p8ljv6ylj7biisxxw0wxn1f9l53-pueue-3.4.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/6dxs0p8ljv6ylj7biisxxw0wxn1f9l53-pueue-3.4.1"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/hlzymb0xqvyih68baffrykwywy391rhv-pueue-3.4.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/hlzymb0xqvyih68baffrykwywy391rhv-pueue-3.4.1"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/sl7w599hjb9g7865hlzxjc64ndnbgjdj-pueue-3.4.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/sl7w599hjb9g7865hlzxjc64ndnbgjdj-pueue-3.4.1"
+        }
+      }
     }
   }
 }
