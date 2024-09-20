@@ -4,7 +4,7 @@ export PATH := $(GOBIN):$(PATH)
 
 # RDB Connection Parameters
 RDB_HOST ?= 127.0.0.1
-RDB_PORT ?= 5432
+RDB_PORT ?= 3307
 RDB_USER ?= ts221
 RDB_PASS ?=
 RDB_NAME ?= postgres
