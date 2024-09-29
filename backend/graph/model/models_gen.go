@@ -6,107 +6,225 @@ import (
 	"fmt"
 	"io"
 	"strconv"
+	"time"
 )
 
-type CreateCardInput struct {
-	// カード名
+type Comment struct {
+	// コメントの一意なID
+	ID string `json:"id"`
+	// コメントが関連する投稿ID
+	PostID string `json:"postId"`
+	// コメントを作成したユーザーID
+	UserID string `json:"userId"`
+	// コメントの内容
+	CommentText string `json:"commentText"`
+}
+
+type CreateCommentInput struct {
+	// 投稿ID
+	PostID string `json:"postId"`
+	// ユーザーID
+	UserID string `json:"userId"`
+	// コメント内容
+	CommentText string `json:"commentText"`
+}
+
+type CreateHabitInput struct {
+	// ユーザーID
+	UserID string `json:"userId"`
+	// 習慣名
 	Name string `json:"name"`
-	// カード所有者
-	OwnerID string `json:"ownerId"`
-	// カード閲覧者IDの配列
-	ViewerIds []string `json:"viewerIds,omitempty"`
-	// カード説明
-	Description string `json:"description"`
-	// 1回あたりの利用上限金額
-	OnceMaxAmount *uint32 `json:"onceMaxAmount,omitempty"`
-	// 月ごとの利用上限金額
-	MonthlyMaxAmount *uint32 `json:"monthlyMaxAmount,omitempty"`
-	// 累計の利用上限金額
-	TotalMaxAmount *uint `json:"totalMaxAmount,omitempty"`
-	// カード利用開始日
-	StartDate *string `json:"startDate,omitempty"`
-	// カード利用終了日
+	// 習慣の説明
+	Description *string `json:"description,omitempty"`
+	// 開始日
+	StartDate string `json:"startDate"`
+	// 終了日
 	EndDate *string `json:"endDate,omitempty"`
+}
+
+type CreateRecordInput struct {
+	// 習慣ID
+	HabitID string `json:"habitId"`
+	// 記録日
+	RecordDate string `json:"recordDate"`
+	// コメント
+	Comment *string `json:"comment,omitempty"`
+	// 添付写真のURL
+	PhotoURL *string `json:"photoUrl,omitempty"`
 }
 
 type CreateUserInput struct {
 	// ユーザ名
+	Username string `json:"username"`
+	// プロフィール画像のURL
+	ProfileImageURL *string `json:"profileImageUrl,omitempty"`
+	// 自己紹介
+	Bio *string `json:"bio,omitempty"`
+}
+
+type Habit struct {
+	// 習慣の一意なID
+	ID string `json:"id"`
+	// この習慣を持つユーザー
+	User *User `json:"user"`
+	// 習慣の名前
 	Name string `json:"name"`
+	// 習慣の説明
+	Description *string `json:"description,omitempty"`
+	// 習慣の開始日
+	StartDate string `json:"startDate"`
+	// 習慣の終了日
+	EndDate *string `json:"endDate,omitempty"`
+	// リマインダー設定時間
+	ReminderTime *time.Time `json:"reminderTime,omitempty"`
+	// 習慣に紐付く記録のリスト
+	Records []*Record `json:"records,omitempty"`
 }
 
 type Mutation struct {
 }
 
+type Notification struct {
+	// 通知の一意なID
+	ID string `json:"id"`
+	// 通知を受け取るユーザーID
+	UserID string `json:"userId"`
+	// 通知を生成したユーザーID（リアクションやコメントを行ったユーザー）
+	ActorID string `json:"actorId"`
+	// 通知の種類（リアクション、コメントなど）
+	NotificationType NotificationType `json:"notificationType"`
+	// 通知に関連するオブジェクトID（投稿やコメントなど）
+	ObjectID string `json:"objectId"`
+	// 通知が既読かどうか
+	IsRead bool `json:"isRead"`
+}
+
+type Post struct {
+	// 投稿の一意なID
+	ID string `json:"id"`
+	// この投稿に紐付く記録
+	Record *Record `json:"record"`
+	// この投稿を作成したユーザー
+	User *User `json:"user"`
+	// この投稿に対するリアクションリスト
+	Reactions []*Reaction `json:"reactions,omitempty"`
+	// この投稿に対するコメントリスト
+	Comments []*Comment `json:"comments,omitempty"`
+}
+
 type Query struct {
 }
 
-type UpdateCardInput struct {
-	// カード名
-	Name string `json:"name"`
-	// カード所有者
-	OwnerID string `json:"ownerId"`
-	// カード閲覧者IDの配列
-	ViewerIds []string `json:"viewerIds,omitempty"`
-	// カード説明
-	Description string `json:"description"`
-	// 1回あたりの利用上限金額
-	OnceMaxAmount *uint32 `json:"onceMaxAmount,omitempty"`
-	// 月ごとの利用上限金額
-	MonthlyMaxAmount *uint32 `json:"monthlyMaxAmount,omitempty"`
-	// 累計の利用上限金額
-	TotalMaxAmount *uint `json:"totalMaxAmount,omitempty"`
-	// カード利用開始日
+type Reaction struct {
+	// リアクションの一意なID
+	ID string `json:"id"`
+	// リアクションが関連する投稿ID
+	PostID string `json:"postId"`
+	// リアクションを行ったユーザーID
+	UserID string `json:"userId"`
+}
+
+type Record struct {
+	// 記録の一意なID
+	ID string `json:"id"`
+	// この記録が関連する習慣
+	Habit *Habit `json:"habit"`
+	// この記録を作成したユーザー
+	User *User `json:"user"`
+	// 記録の日付
+	RecordDate string `json:"recordDate"`
+	// 記録のコメント
+	Comment *string `json:"comment,omitempty"`
+	// 記録に関連する写真のURL
+	PhotoURL *string `json:"photoUrl,omitempty"`
+	// この記録が投稿された場合、その投稿情報
+	Post *Post `json:"post,omitempty"`
+}
+
+type UpdateHabitInput struct {
+	// 習慣ID
+	ID string `json:"id"`
+	// 習慣名
+	Name *string `json:"name,omitempty"`
+	// 習慣の説明
+	Description *string `json:"description,omitempty"`
+	// 開始日
 	StartDate *string `json:"startDate,omitempty"`
-	// カード利用終了日
+	// 終了日
 	EndDate *string `json:"endDate,omitempty"`
 }
 
-type User struct {
-	// ユーザID
+type UpdateUserInput struct {
+	// ユーザーID
 	ID string `json:"id"`
-	// ユーザ名
-	Name string `json:"name"`
+	// ユーザー名
+	Username *string `json:"username,omitempty"`
+	// プロフィール画像のURL
+	ProfileImageURL *string `json:"profileImageUrl,omitempty"`
+	// 自己紹介
+	Bio *string `json:"bio,omitempty"`
 }
 
-type CardState string
+type User struct {
+	// ユーザーの一意なID（Supabase Authから取得）
+	ID string `json:"id"`
+	// ユーザー名（システム内で表示される名前）
+	Username string `json:"username"`
+	// ユーザーのプロフィール画像URL
+	ProfileImageURL *string `json:"profileImageUrl,omitempty"`
+	// ユーザーの自己紹介
+	Bio *string `json:"bio,omitempty"`
+	// ユーザーが持っている習慣のリスト
+	Habits []*Habit `json:"habits,omitempty"`
+	// ユーザーが行った記録のリスト
+	Records []*Record `json:"records,omitempty"`
+	// ユーザーが投稿した投稿のリスト
+	Posts []*Post `json:"posts,omitempty"`
+	// ユーザーが行ったリアクションのリスト
+	Reactions []*Reaction `json:"reactions,omitempty"`
+	// ユーザーが行ったコメントのリスト
+	Comments []*Comment `json:"comments,omitempty"`
+	// ユーザーに対する通知のリスト
+	Notifications []*Notification `json:"notifications,omitempty"`
+}
+
+type NotificationType string
 
 const (
-	// 有効
-	CardStateActive CardState = "ACTIVE"
-	// 一時停止
-	CardStateLocked CardState = "LOCKED"
+	NotificationTypeReaction NotificationType = "REACTION"
+	NotificationTypeComment  NotificationType = "COMMENT"
 )
 
-var AllCardState = []CardState{
-	CardStateActive,
-	CardStateLocked,
+var AllNotificationType = []NotificationType{
+	NotificationTypeReaction,
+	NotificationTypeComment,
 }
 
-func (e CardState) IsValid() bool {
+func (e NotificationType) IsValid() bool {
 	switch e {
-	case CardStateActive, CardStateLocked:
+	case NotificationTypeReaction, NotificationTypeComment:
 		return true
 	}
 	return false
 }
 
-func (e CardState) String() string {
+func (e NotificationType) String() string {
 	return string(e)
 }
 
-func (e *CardState) UnmarshalGQL(v interface{}) error {
+func (e *NotificationType) UnmarshalGQL(v interface{}) error {
 	str, ok := v.(string)
 	if !ok {
 		return fmt.Errorf("enums must be strings")
 	}
 
-	*e = CardState(str)
+	*e = NotificationType(str)
 	if !e.IsValid() {
-		return fmt.Errorf("%s is not a valid CardState", str)
+		return fmt.Errorf("%s is not a valid NotificationType", str)
 	}
 	return nil
 }
 
-func (e CardState) MarshalGQL(w io.Writer) {
+func (e NotificationType) MarshalGQL(w io.Writer) {
 	fmt.Fprint(w, strconv.Quote(e.String()))
 }

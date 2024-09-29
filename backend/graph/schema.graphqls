@@ -1,122 +1,225 @@
-input CreateUserInput {
-    """
-    ユーザ名
-    """
-    name: String!
-}
-
-input CreateCardInput {
-    """
-    カード名
-    """
-    name: String!
-    """
-    カード所有者
-    """
-    ownerId: ID!
-    """
-    カード閲覧者IDの配列
-    """
-    viewerIds: [ID!]
-    """
-    カード説明
-    """
-    description: String!
-    """
-    1回あたりの利用上限金額
-    """
-    onceMaxAmount: Uint32
-    """
-    月ごとの利用上限金額
-    """
-    monthlyMaxAmount: Uint32
-    """
-    累計の利用上限金額
-    """
-    totalMaxAmount: Uint
-    """
-    カード利用開始日
-    """
-    startDate: Date
-    """
-    カード利用終了日
-    """
-    endDate: Date
-}
-
-input UpdateCardInput {
-    """
-    カード名
-    """
-    name: String!
-    """
-    カード所有者
-    """
-    ownerId: ID!
-    """
-    カード閲覧者IDの配列
-    """
-    viewerIds: [ID!]
-    """
-    カード説明
-    """
-    description: String!
-    """
-    1回あたりの利用上限金額
-    """
-    onceMaxAmount: Uint32
-    """
-    月ごとの利用上限金額
-    """
-    monthlyMaxAmount: Uint32
-    """
-    累計の利用上限金額
-    """
-    totalMaxAmount: Uint
-    """
-    カード利用開始日
-    """
-    startDate: Date
-    """
-    カード利用終了日
-    """
-    endDate: Date
-}
-
+# クエリタイプ
 type Query {
-    """
-    カード取得
-    """
-    card(id: ID!): Card!
-    """
-    カード一覧取得
-    """
-    cards: [Card!]!
-    """
-    ユーザ一覧取得
-    """
-    users: [User!]!
+  """
+  特定のユーザーをIDで取得します。
+  """
+  user(id: ID!): User
+
+  """
+  特定のユーザーに紐付けられた習慣のリストを取得します。
+  """
+  habits(userId: ID!): [Habit]
+
+  """
+  特定の習慣をIDで取得します。
+  """
+  habit(id: ID!): Habit
+
+  """
+  特定の習慣に関連する記録のリストを取得します。
+  """
+  records(habitId: ID!): [Record]
+
+  """
+  特定の記録をIDで取得します。
+  """
+  record(id: ID!): Record
+
+  """
+  タイムライン全体の投稿を取得します（自分と他のユーザー）。
+  """
+  timeline: [Post]
+
+  """
+  特定の投稿をIDで取得します。
+  """
+  post(id: ID!): Post
+
+  """
+  特定の投稿に対するリアクションのリストを取得します。
+  """
+  reactions(postId: ID!): [Reaction]
+
+  """
+  特定の投稿に対するコメントのリストを取得します。
+  """
+  comments(postId: ID!): [Comment]
+
+  """
+  特定のユーザーに対する通知のリストを取得します。
+  """
+  notifications(userId: ID!): [Notification]
 }
 
+# ミューテーションタイプ
 type Mutation {
-    """
-    ユーザ作成
-    """
-    createUser(input: CreateUserInput!): User!
-    """
-    カード作成
-    """
-    createCard(input: CreateCardInput!): Card!
-    """
-    カード更新
-    """
-    updateCard(id: ID!, input: UpdateCardInput!): Card!
-    """
-    カードロック
-    """
-    lockCard(id: ID!): Boolean!
-    """
-    カードロック解除
-    """
-    unlockCard(id: ID!): Boolean!
+  """
+  新しいユーザーを作成します。
+  """
+  createUser(input: CreateUserInput!): User!
+
+  """
+  特定のユーザーの情報を更新します。
+  """
+  updateUser(input: UpdateUserInput!): User!
+
+  """
+  新しい習慣を作成します（毎日実行）。
+  """
+  createHabit(input: CreateHabitInput!): Habit!
+
+  """
+  特定の習慣の情報を更新します。
+  """
+  updateHabit(input: UpdateHabitInput!): Habit!
+
+  """
+  特定の習慣を削除します。
+  """
+  deleteHabit(id: ID!): Boolean
+
+  """
+  新しい記録を作成し、それに紐づく投稿を自動で作成します。
+  """
+  createRecord(input: CreateRecordInput!): Record!
+
+  """
+  特定の記録を削除し、それに紐づく投稿も自動で削除します。
+  """
+  deleteRecord(id: ID!): Boolean
+
+  """
+  特定の投稿にいいねをつけます。
+  """
+  addLike(postId: ID!, userId: ID!): Reaction!
+
+  """
+  特定の投稿のいいねを取り消します。
+  """
+  removeLike(postId: ID!, userId: ID!): Boolean
+
+  """
+  投稿に対してコメントを追加します。
+  """
+  createComment(input: CreateCommentInput!): Comment!
+
+  """
+  リマインダーを設定します。
+  """
+  setReminder(habitId: ID!, time: String!): Boolean
+}
+
+# ミューテーション入力タイプ
+input CreateUserInput {
+  """
+  ユーザ名
+  """
+  username: String!
+  """
+  プロフィール画像のURL
+  """
+  profileImageUrl: String
+  """
+  自己紹介
+  """
+  bio: String
+}
+
+input UpdateUserInput {
+  """
+  ユーザーID
+  """
+  id: ID!
+  """
+  ユーザー名
+  """
+  username: String
+  """
+  プロフィール画像のURL
+  """
+  profileImageUrl: String
+  """
+  自己紹介
+  """
+  bio: String
+}
+
+input CreateHabitInput {
+  """
+  ユーザーID
+  """
+  userId: ID!
+  """
+  習慣名
+  """
+  name: String!
+  """
+  習慣の説明
+  """
+  description: String
+  """
+  開始日
+  """
+  startDate: String!
+  """
+  終了日
+  """
+  endDate: String
+}
+
+input UpdateHabitInput {
+  """
+  習慣ID
+  """
+  id: ID!
+  """
+  習慣名
+  """
+  name: String
+  """
+  習慣の説明
+  """
+  description: String
+  """
+  開始日
+  """
+  startDate: String
+  """
+  終了日
+  """
+  endDate: String
+}
+
+input CreateRecordInput {
+  """
+  習慣ID
+  """
+  habitId: ID!
+  """
+  記録日
+  """
+  recordDate: Date!
+  """
+  コメント
+  """
+  comment: String
+  """
+  添付写真のURL
+  """
+  photoUrl: String
+}
+
+input CreateCommentInput {
+  """
+  投稿ID
+  """
+  postId: ID!
+  """
+  ユーザーID
+  """
+  userId: ID!
+  """
+  コメント内容
+  """
+  commentText: String!
 }
