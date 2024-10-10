@@ -4,7 +4,6 @@ package db_model
 
 import (
 	"database/sql"
-	"time"
 )
 
 // Habit represents a row from 'habit.habits'.
@@ -13,7 +12,5 @@ type Habit struct {
 	UserID       string         `json:"user_id"`       // user_id
 	Name         string         `json:"name"`          // name
 	Description  sql.NullString `json:"description"`   // description
-	StartDate    time.Time      `json:"start_date"`    // start_date
-	EndDate      sql.NullTime   `json:"end_date"`      // end_date
 	ReminderTime sql.NullString `json:"reminder_time"` // reminder_time
 }

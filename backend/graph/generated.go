@@ -8,12 +8,11 @@ import (
 	"embed"
 	"errors"
 	"fmt"
+	"habit/backend/graph/model"
 	"strconv"
 	"sync"
 	"sync/atomic"
 	"time"
-
-	"habit/backend/graph/model"
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/99designs/gqlgen/graphql/introspection"
@@ -58,12 +57,10 @@ type ComplexityRoot struct {
 
 	Habit struct {
 		Description  func(childComplexity int) int
-		EndDate      func(childComplexity int) int
 		ID           func(childComplexity int) int
 		Name         func(childComplexity int) int
 		Records      func(childComplexity int) int
 		ReminderTime func(childComplexity int) int
-		StartDate    func(childComplexity int) int
 		User         func(childComplexity int) int
 	}
 
@@ -221,13 +218,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Habit.Description(childComplexity), true
 
-	case "Habit.endDate":
-		if e.complexity.Habit.EndDate == nil {
-			break
-		}
-
-		return e.complexity.Habit.EndDate(childComplexity), true
-
 	case "Habit.id":
 		if e.complexity.Habit.ID == nil {
 			break
@@ -255,13 +245,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Habit.ReminderTime(childComplexity), true
-
-	case "Habit.startDate":
-		if e.complexity.Habit.StartDate == nil {
-			break
-		}
-
-		return e.complexity.Habit.StartDate(childComplexity), true
 
 	case "Habit.user":
 		if e.complexity.Habit.User == nil {
@@ -1616,91 +1599,6 @@ func (ec *executionContext) fieldContext_Habit_description(_ context.Context, fi
 	return fc, nil
 }
 
-func (ec *executionContext) _Habit_startDate(ctx context.Context, field graphql.CollectedField, obj *model.Habit) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Habit_startDate(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.StartDate, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNDate2string(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Habit_startDate(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Habit",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Date does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _Habit_endDate(ctx context.Context, field graphql.CollectedField, obj *model.Habit) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Habit_endDate(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.EndDate, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalODate2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Habit_endDate(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Habit",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Date does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
 func (ec *executionContext) _Habit_reminderTime(ctx context.Context, field graphql.CollectedField, obj *model.Habit) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Habit_reminderTime(ctx, field)
 	if err != nil {
@@ -2000,10 +1898,6 @@ func (ec *executionContext) fieldContext_Mutation_createHabit(ctx context.Contex
 				return ec.fieldContext_Habit_name(ctx, field)
 			case "description":
 				return ec.fieldContext_Habit_description(ctx, field)
-			case "startDate":
-				return ec.fieldContext_Habit_startDate(ctx, field)
-			case "endDate":
-				return ec.fieldContext_Habit_endDate(ctx, field)
 			case "reminderTime":
 				return ec.fieldContext_Habit_reminderTime(ctx, field)
 			case "records":
@@ -2073,10 +1967,6 @@ func (ec *executionContext) fieldContext_Mutation_updateHabit(ctx context.Contex
 				return ec.fieldContext_Habit_name(ctx, field)
 			case "description":
 				return ec.fieldContext_Habit_description(ctx, field)
-			case "startDate":
-				return ec.fieldContext_Habit_startDate(ctx, field)
-			case "endDate":
-				return ec.fieldContext_Habit_endDate(ctx, field)
 			case "reminderTime":
 				return ec.fieldContext_Habit_reminderTime(ctx, field)
 			case "records":
@@ -3158,10 +3048,6 @@ func (ec *executionContext) fieldContext_Query_habits(ctx context.Context, field
 				return ec.fieldContext_Habit_name(ctx, field)
 			case "description":
 				return ec.fieldContext_Habit_description(ctx, field)
-			case "startDate":
-				return ec.fieldContext_Habit_startDate(ctx, field)
-			case "endDate":
-				return ec.fieldContext_Habit_endDate(ctx, field)
 			case "reminderTime":
 				return ec.fieldContext_Habit_reminderTime(ctx, field)
 			case "records":
@@ -3228,10 +3114,6 @@ func (ec *executionContext) fieldContext_Query_habit(ctx context.Context, field 
 				return ec.fieldContext_Habit_name(ctx, field)
 			case "description":
 				return ec.fieldContext_Habit_description(ctx, field)
-			case "startDate":
-				return ec.fieldContext_Habit_startDate(ctx, field)
-			case "endDate":
-				return ec.fieldContext_Habit_endDate(ctx, field)
 			case "reminderTime":
 				return ec.fieldContext_Habit_reminderTime(ctx, field)
 			case "records":
@@ -4047,10 +3929,6 @@ func (ec *executionContext) fieldContext_Record_habit(_ context.Context, field g
 				return ec.fieldContext_Habit_name(ctx, field)
 			case "description":
 				return ec.fieldContext_Habit_description(ctx, field)
-			case "startDate":
-				return ec.fieldContext_Habit_startDate(ctx, field)
-			case "endDate":
-				return ec.fieldContext_Habit_endDate(ctx, field)
 			case "reminderTime":
 				return ec.fieldContext_Habit_reminderTime(ctx, field)
 			case "records":
@@ -4521,10 +4399,6 @@ func (ec *executionContext) fieldContext_User_habits(_ context.Context, field gr
 				return ec.fieldContext_Habit_name(ctx, field)
 			case "description":
 				return ec.fieldContext_Habit_description(ctx, field)
-			case "startDate":
-				return ec.fieldContext_Habit_startDate(ctx, field)
-			case "endDate":
-				return ec.fieldContext_Habit_endDate(ctx, field)
 			case "reminderTime":
 				return ec.fieldContext_Habit_reminderTime(ctx, field)
 			case "records":
@@ -6622,7 +6496,7 @@ func (ec *executionContext) unmarshalInputCreateHabitInput(ctx context.Context, 
 		asMap[k] = v
 	}
 
-	fieldsInOrder := [...]string{"userId", "name", "description", "startDate", "endDate"}
+	fieldsInOrder := [...]string{"userId", "name", "description"}
 	for _, k := range fieldsInOrder {
 		v, ok := asMap[k]
 		if !ok {
@@ -6650,20 +6524,6 @@ func (ec *executionContext) unmarshalInputCreateHabitInput(ctx context.Context, 
 				return it, err
 			}
 			it.Description = data
-		case "startDate":
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("startDate"))
-			data, err := ec.unmarshalNString2string(ctx, v)
-			if err != nil {
-				return it, err
-			}
-			it.StartDate = data
-		case "endDate":
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("endDate"))
-			data, err := ec.unmarshalOString2ᚖstring(ctx, v)
-			if err != nil {
-				return it, err
-			}
-			it.EndDate = data
 		}
 	}
 
@@ -6766,7 +6626,7 @@ func (ec *executionContext) unmarshalInputUpdateHabitInput(ctx context.Context, 
 		asMap[k] = v
 	}
 
-	fieldsInOrder := [...]string{"id", "name", "description", "startDate", "endDate"}
+	fieldsInOrder := [...]string{"id", "name", "description"}
 	for _, k := range fieldsInOrder {
 		v, ok := asMap[k]
 		if !ok {
@@ -6794,20 +6654,6 @@ func (ec *executionContext) unmarshalInputUpdateHabitInput(ctx context.Context, 
 				return it, err
 			}
 			it.Description = data
-		case "startDate":
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("startDate"))
-			data, err := ec.unmarshalOString2ᚖstring(ctx, v)
-			if err != nil {
-				return it, err
-			}
-			it.StartDate = data
-		case "endDate":
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("endDate"))
-			data, err := ec.unmarshalOString2ᚖstring(ctx, v)
-			if err != nil {
-				return it, err
-			}
-			it.EndDate = data
 		}
 	}
 
@@ -6952,13 +6798,6 @@ func (ec *executionContext) _Habit(ctx context.Context, sel ast.SelectionSet, ob
 			}
 		case "description":
 			out.Values[i] = ec._Habit_description(ctx, field, obj)
-		case "startDate":
-			out.Values[i] = ec._Habit_startDate(ctx, field, obj)
-			if out.Values[i] == graphql.Null {
-				out.Invalids++
-			}
-		case "endDate":
-			out.Values[i] = ec._Habit_endDate(ctx, field, obj)
 		case "reminderTime":
 			out.Values[i] = ec._Habit_reminderTime(ctx, field, obj)
 		case "records":
@@ -8440,22 +8279,6 @@ func (ec *executionContext) marshalOComment2ᚖhabitᚋbackendᚋgraphᚋmodel�
 		return graphql.Null
 	}
 	return ec._Comment(ctx, sel, v)
-}
-
-func (ec *executionContext) unmarshalODate2ᚖstring(ctx context.Context, v interface{}) (*string, error) {
-	if v == nil {
-		return nil, nil
-	}
-	res, err := graphql.UnmarshalString(v)
-	return &res, graphql.ErrorOnPath(ctx, err)
-}
-
-func (ec *executionContext) marshalODate2ᚖstring(ctx context.Context, sel ast.SelectionSet, v *string) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	res := graphql.MarshalString(*v)
-	return res
 }
 
 func (ec *executionContext) marshalOHabit2ᚕᚖhabitᚋbackendᚋgraphᚋmodelᚐHabit(ctx context.Context, sel ast.SelectionSet, v []*model.Habit) graphql.Marshaler {

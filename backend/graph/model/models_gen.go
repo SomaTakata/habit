@@ -36,10 +36,6 @@ type CreateHabitInput struct {
 	Name string `json:"name"`
 	// 習慣の説明
 	Description *string `json:"description,omitempty"`
-	// 開始日
-	StartDate string `json:"startDate"`
-	// 終了日
-	EndDate *string `json:"endDate,omitempty"`
 }
 
 type CreateRecordInput struct {
@@ -71,10 +67,6 @@ type Habit struct {
 	Name string `json:"name"`
 	// 習慣の説明
 	Description *string `json:"description,omitempty"`
-	// 習慣の開始日
-	StartDate string `json:"startDate"`
-	// 習慣の終了日
-	EndDate *string `json:"endDate,omitempty"`
 	// リマインダー設定時間
 	ReminderTime *time.Time `json:"reminderTime,omitempty"`
 	// 習慣に紐付く記録のリスト
@@ -148,10 +140,6 @@ type UpdateHabitInput struct {
 	Name *string `json:"name,omitempty"`
 	// 習慣の説明
 	Description *string `json:"description,omitempty"`
-	// 開始日
-	StartDate *string `json:"startDate,omitempty"`
-	// 終了日
-	EndDate *string `json:"endDate,omitempty"`
 }
 
 type UpdateUserInput struct {
