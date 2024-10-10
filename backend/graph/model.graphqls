@@ -64,14 +64,6 @@ type Habit {
   """
   description: String
   """
-  習慣の開始日
-  """
-  startDate: Date!
-  """
-  習慣の終了日
-  """
-  endDate: Date
-  """
   リマインダー設定時間
   """
   reminderTime: Time

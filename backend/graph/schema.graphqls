@@ -157,14 +157,6 @@ input CreateHabitInput {
   習慣の説明
   """
   description: String
-  """
-  開始日
-  """
-  startDate: String!
-  """
-  終了日
-  """
-  endDate: String
 }
 
 input UpdateHabitInput {
@@ -180,14 +172,6 @@ input UpdateHabitInput {
   習慣の説明
   """
   description: String
-  """
-  開始日
-  """
-  startDate: String
-  """
-  終了日
-  """
-  endDate: String
 }
 
 input CreateRecordInput {
