@@ -9,12 +9,12 @@ INSERT INTO users (id, username, profile_image_url, bio, created_at, updated_at)
 ('user5', '高橋 四郎', 'https://example.com/images/shiro.jpg', '旅行と写真が趣味', NOW(), NOW());
 
 -- 習慣テーブルの仮データ
-INSERT INTO habits (id, user_id, name, description, start_date, end_date, reminder_time, created_at, updated_at) VALUES
-('habit1', 'user1', '毎日のコーディング', '毎日30分のコーディング練習をする', '2024-01-01', '2024-12-31', '08:00:00', NOW(), NOW()),
-('habit2', 'user2', '朝のランニング', '毎朝5kmを走る', '2024-01-01', '2024-12-31', '06:00:00', NOW(), NOW()),
-('habit3', 'user3', '毎日のヨガ', '30分のヨガを行う', '2024-01-01', '2024-12-31', '07:00:00', NOW(), NOW()),
-('habit4', 'user4', '夜の瞑想', '20分間の瞑想をする', '2024-01-01', '2024-12-31', '18:00:00', NOW(), NOW()),
-('habit5', 'user5', '写真散歩', '1時間の散歩をして写真を撮る', '2024-01-01', '2024-12-31', '17:00:00', NOW(), NOW());
+INSERT INTO habits (id, user_id, name, description, reminder_time, created_at, updated_at) VALUES
+('habit1', 'user1', '毎日のコーディング', '毎日30分のコーディング練習をする', '08:00:00', NOW(), NOW()),
+('habit2', 'user2', '朝のランニング', '毎朝5kmを走る', '06:00:00', NOW(), NOW()),
+('habit3', 'user3', '毎日のヨガ', '30分のヨガを行う', '07:00:00', NOW(), NOW()),
+('habit4', 'user4', '夜の瞑想', '20分間の瞑想をする', '18:00:00', NOW(), NOW()),
+('habit5', 'user5', '写真散歩', '1時間の散歩をして写真を撮る', '17:00:00', NOW(), NOW());
 
 -- 記録テーブルの仮データ
 INSERT INTO records (id, habit_id, user_id, record_date, comment, photo_url, created_at) VALUES

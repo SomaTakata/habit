@@ -17,8 +17,6 @@ CREATE TABLE habits (
     user_id VARCHAR(26) NOT NULL COMMENT 'ユーザーID',
     name VARCHAR(100) NOT NULL COMMENT '習慣の名前',
     description TEXT COMMENT '習慣の詳細',
-    start_date DATE NOT NULL COMMENT '習慣開始日',
-    end_date DATE COMMENT '習慣終了日',
     reminder_time TIME COMMENT 'リマインダー設定時間',
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
