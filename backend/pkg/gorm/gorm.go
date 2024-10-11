@@ -1,7 +1,6 @@
 package gorm
 
 import (
-	"context"
 	"time"
 
 	"github.com/go-sql-driver/mysql"
@@ -11,8 +10,6 @@ import (
 
 	"habit/backend/env"
 	"habit/backend/pkg/errors"
-	tenantplugin "habit/backend/pkg/gorm/plugin/tenant"
-	"habit/backend/pkg/tenant"
 )
 
 func NewDefaultMySQLConfig() *mysql.Config {
@@ -33,10 +30,6 @@ func Open(mysqlCfg *mysql.Config, logger gormlogger.Writer) (*gorm.DB, error) {
 		return nil, errors.Wrap(err)
 	}
 
-	// set tenant policy plugin
-	if err := db.Use(tenantplugin.New()); err != nil {
-		return nil, errors.Wrap(err)
-	}
 	return db, nil
 }
 
@@ -59,8 +52,4 @@ func openDB(mysqlCfg *mysql.Config, logger gormlogger.Writer) (*gorm.DB, error) 
 		return nil, errors.Wrap(err)
 	}
 	return db, nil
-}
-
-func New(ctx context.Context, db *gorm.DB, tenantID tenant.ID) *gorm.DB {
-	return tenantplugin.Tenant(ctx, db, tenantID)
 }

@@ -228,8 +228,6 @@ func (err ErrInvalid{{ $e.GoName }}) Error() string {
 {{- end }}
 type {{ $t.GoName }} struct {
 {{ range $t.Fields -}}
-{{- if eq .GoName "TenantID" -}}
-TenantID tenant.ID `json:"tenant_id"` // tenant_id
 {{- else }}
 {{- field . }}
 {{- end }}

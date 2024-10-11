@@ -9,18 +9,13 @@ import (
 	"habit/backend/service"
 )
 
-// NOTE: 本来ならマルチテナントにおいては、認証してユーザーが所属しているテナントIDを取得する
-const defaultTenantID = "00000000-0000-0000-0000-000000000000"
-
 type Loaders struct {
-	UserLoader        *dataloadgen.Loader[string, *db_model.User]
-	CardViewersLoader *dataloadgen.Loader[string, []*db_model.CardViewer]
+	UserLoader *dataloadgen.Loader[string, *db_model.User]
 }
 
-func New(userSvc service.User, cardSvc service.Card) *Loaders {
+func New(userSvc service.User) *Loaders {
 	return &Loaders{
-		UserLoader:        dataloadgen.NewLoader(newUserLoader(userSvc)),
-		CardViewersLoader: dataloadgen.NewLoader(newCardViewersLoader(cardSvc)),
+		UserLoader: dataloadgen.NewLoader(newUserLoader(userSvc)),
 	}
 }
 

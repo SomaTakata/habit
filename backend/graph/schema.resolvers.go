@@ -21,99 +21,13 @@ func (r *mutationResolver) UpdateUser(ctx context.Context, input model.UpdateUse
 	panic(fmt.Errorf("not implemented: UpdateUser - updateUser"))
 }
 
-// CreateHabit is the resolver for the createHabit field.
-func (r *mutationResolver) CreateHabit(ctx context.Context, input model.CreateHabitInput) (*model.Habit, error) {
-	panic(fmt.Errorf("not implemented: CreateHabit - createHabit"))
-}
-
-// UpdateHabit is the resolver for the updateHabit field.
-func (r *mutationResolver) UpdateHabit(ctx context.Context, input model.UpdateHabitInput) (*model.Habit, error) {
-	panic(fmt.Errorf("not implemented: UpdateHabit - updateHabit"))
-}
-
-// DeleteHabit is the resolver for the deleteHabit field.
-func (r *mutationResolver) DeleteHabit(ctx context.Context, id string) (*bool, error) {
-	panic(fmt.Errorf("not implemented: DeleteHabit - deleteHabit"))
-}
-
-// CreateRecord is the resolver for the createRecord field.
-func (r *mutationResolver) CreateRecord(ctx context.Context, input model.CreateRecordInput) (*model.Record, error) {
-	panic(fmt.Errorf("not implemented: CreateRecord - createRecord"))
-}
-
-// DeleteRecord is the resolver for the deleteRecord field.
-func (r *mutationResolver) DeleteRecord(ctx context.Context, id string) (*bool, error) {
-	panic(fmt.Errorf("not implemented: DeleteRecord - deleteRecord"))
-}
-
-// AddLike is the resolver for the addLike field.
-func (r *mutationResolver) AddLike(ctx context.Context, postID string, userID string) (*model.Reaction, error) {
-	panic(fmt.Errorf("not implemented: AddLike - addLike"))
-}
-
-// RemoveLike is the resolver for the removeLike field.
-func (r *mutationResolver) RemoveLike(ctx context.Context, postID string, userID string) (*bool, error) {
-	panic(fmt.Errorf("not implemented: RemoveLike - removeLike"))
-}
-
-// CreateComment is the resolver for the createComment field.
-func (r *mutationResolver) CreateComment(ctx context.Context, input model.CreateCommentInput) (*model.Comment, error) {
-	panic(fmt.Errorf("not implemented: CreateComment - createComment"))
-}
-
-// SetReminder is the resolver for the setReminder field.
-func (r *mutationResolver) SetReminder(ctx context.Context, habitID string, time string) (*bool, error) {
-	panic(fmt.Errorf("not implemented: SetReminder - setReminder"))
-}
-
 // User is the resolver for the user field.
 func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error) {
-	panic(fmt.Errorf("not implemented: User - user"))
-}
-
-// Habits is the resolver for the habits field.
-func (r *queryResolver) Habits(ctx context.Context, userID string) ([]*model.Habit, error) {
-	panic(fmt.Errorf("not implemented: Habits - habits"))
-}
-
-// Habit is the resolver for the habit field.
-func (r *queryResolver) Habit(ctx context.Context, id string) (*model.Habit, error) {
-	panic(fmt.Errorf("not implemented: Habit - habit"))
-}
-
-// Records is the resolver for the records field.
-func (r *queryResolver) Records(ctx context.Context, habitID string) ([]*model.Record, error) {
-	panic(fmt.Errorf("not implemented: Records - records"))
-}
-
-// Record is the resolver for the record field.
-func (r *queryResolver) Record(ctx context.Context, id string) (*model.Record, error) {
-	panic(fmt.Errorf("not implemented: Record - record"))
-}
-
-// Timeline is the resolver for the timeline field.
-func (r *queryResolver) Timeline(ctx context.Context) ([]*model.Post, error) {
-	panic(fmt.Errorf("not implemented: Timeline - timeline"))
-}
-
-// Post is the resolver for the post field.
-func (r *queryResolver) Post(ctx context.Context, id string) (*model.Post, error) {
-	panic(fmt.Errorf("not implemented: Post - post"))
-}
-
-// Reactions is the resolver for the reactions field.
-func (r *queryResolver) Reactions(ctx context.Context, postID string) ([]*model.Reaction, error) {
-	panic(fmt.Errorf("not implemented: Reactions - reactions"))
-}
-
-// Comments is the resolver for the comments field.
-func (r *queryResolver) Comments(ctx context.Context, postID string) ([]*model.Comment, error) {
-	panic(fmt.Errorf("not implemented: Comments - comments"))
-}
-
-// Notifications is the resolver for the notifications field.
-func (r *queryResolver) Notifications(ctx context.Context, userID string) ([]*model.Notification, error) {
-	panic(fmt.Errorf("not implemented: Notifications - notifications"))
+	user, err := r.UserSvc.Get(ctx, id)
+	if err != nil {
+		return nil, err
+	}
+	return model.FormatUserResponse(user), nil
 }
 
 // Mutation returns MutationResolver implementation.
