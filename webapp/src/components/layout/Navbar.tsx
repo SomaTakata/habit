@@ -4,68 +4,55 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { House, Camera, Flag, Bell, User } from "lucide-react";
+import React from "react";
 
+const navItems = [
+  {
+    name: "ホーム",
+    href: "/",
+    icon: <House size={20} />,
+  },
+  {
+    name: "目標",
+    href: "/goal",
+    icon: <Flag size={20} />,
+  },
+  {
+    href: "/camera",
+    icon: (
+      <Camera
+        size={20}
+        className="p-2.5 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center"
+      />
+    ),
+  },
+  {
+    name: "通知",
+    href: "/notifications",
+    icon: <Bell size={20} />,
+  },
+  {
+    name: "マイページ",
+    href: "/my-page",
+    icon: <User size={20} />,
+  },
+];
 export function Navbar() {
   const pathname = usePathname();
+
   return (
     <nav className="flex pt-2 pb-7 px-2.5 fixed bottom-0 left-0 right-0 bg-background border-[0.5px] border-border/80 justify-around">
-      <NavItem
-        name="ホーム"
-        href="/"
-        isActive={isActive(pathname, "/")}
-        icon={
-          <House
-            size={20}
-            fill={isActive(pathname, "/") ? "currentColor" : "none"}
-          />
-        }
-      />
-      <NavItem
-        name="目標"
-        href="/flag"
-        isActive={isActive(pathname, "/flag")}
-        icon={
-          <Flag
-            size={20}
-            fill={isActive(pathname, "/flag") ? "currentColor" : "none"}
-          />
-        }
-      />
-      <NavItem
-        href="/camera"
-        isActive={isActive(pathname, "/camera")}
-        icon={
-          <Camera
-            size={20}
-            className="p-2.5 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center"
-            fill={isActive(pathname, "/camera") ? "currentColor" : "none"}
-          />
-        }
-      />
-      <NavItem
-        name="通知"
-        href="/notifications"
-        isActive={isActive(pathname, "/notifications")}
-        icon={
-          <Bell
-            size={20}
-            fill={
-              isActive(pathname, "/notifications") ? "currentColor" : "none"
-            }
-          />
-        }
-      />
-      <NavItem
-        name="マイページ"
-        href="/my-page"
-        isActive={isActive(pathname, "/my-page")}
-        icon={
-          <User
-            size={20}
-            fill={isActive(pathname, "/my-page") ? "currentColor" : "none"}
-          />
-        }
-      />
+      {navItems.map((item) => (
+        <NavItem
+          key={item.href}
+          name={item.name}
+          href={item.href}
+          isActive={isActive(pathname, item.href)}
+          icon={React.cloneElement(item.icon, {
+            fill: isActive(pathname, item.href) ? "currentColor" : "none",
+          })}
+        />
+      ))}
     </nav>
   );
 }
@@ -90,7 +77,7 @@ function NavItem({
       })}
     >
       {icon}
-      {name && <span className={cn("text-[9px]")}>{name}</span>}
+      {name && <span className="text-[9px]">{name}</span>}
     </Link>
   );
 }
