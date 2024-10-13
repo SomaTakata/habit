@@ -11,198 +11,190 @@ type User {
   ユーザー名（システム内で表示される名前）
   """
   username: String!
-  """
-  ユーザーのプロフィール画像URL
-  """
-  profileImageUrl: String
-  """
-  ユーザーの自己紹介
-  """
-  bio: String
-  """
-  ユーザーが持っている習慣のリスト
-  """
-  habits: [Habit]
-  """
-  ユーザーが行った記録のリスト
-  """
-  records: [Record]
-  """
-  ユーザーが投稿した投稿のリスト
-  """
-  posts: [Post]
-  """
-  ユーザーが行ったリアクションのリスト
-  """
-  reactions: [Reaction]
-  """
-  ユーザーが行ったコメントのリスト
-  """
-  comments: [Comment]
-  """
-  ユーザーに対する通知のリスト
-  """
-  notifications: [Notification]
+  # """
+  # ユーザーのプロフィール画像URL
+  # """
+  # profileImageUrl: String
+  # """
+  # ユーザーの自己紹介
+  # """
+  # bio: String
+  # """
+  # ユーザーが持っている習慣のリスト
+  # """
+  # habits: [Habit]
+  # """
+  # ユーザーが行った記録のリスト
+  # """
+  # records: [Record]
+  # """
+  # ユーザーが投稿した投稿のリスト
+  # """
+  # posts: [Post]
+  # """
+  # ユーザーが行ったリアクションのリスト
+  # """
+  # reactions: [Reaction]
+  # """
+  # ユーザーが行ったコメントのリスト
+  # """
+  # comments: [Comment]
+  # """
+  # ユーザーに対する通知のリスト
+  # """
+  # notifications: [Notification]
 }
 
-# 習慣タイプ
-type Habit {
-  """
-  習慣の一意なID
-  """
-  id: ID!
-  """
-  この習慣を持つユーザー
-  """
-  user: User!
-  """
-  習慣の名前
-  """
-  name: String!
-  """
-  習慣の説明
-  """
-  description: String
-  """
-  習慣の開始日
-  """
-  startDate: Date!
-  """
-  習慣の終了日
-  """
-  endDate: Date
-  """
-  リマインダー設定時間
-  """
-  reminderTime: Time
-  """
-  習慣に紐付く記録のリスト
-  """
-  records: [Record]
-}
+# # 習慣タイプ
+# type Habit {
+#   """
+#   習慣の一意なID
+#   """
+#   id: ID!
+#   """
+#   この習慣を持つユーザー
+#   """
+#   user: User!
+#   """
+#   習慣の名前
+#   """
+#   name: String!
+#   """
+#   習慣の説明
+#   """
+#   description: String
+#   """
+#   リマインダー設定時間
+#   """
+#   reminderTime: Time
+#   """
+#   習慣に紐付く記録のリスト
+#   """
+#   records: [Record]
+# }
 
-# 記録タイプ
-type Record {
-  """
-  記録の一意なID
-  """
-  id: ID!
-  """
-  この記録が関連する習慣
-  """
-  habit: Habit!
-  """
-  この記録を作成したユーザー
-  """
-  user: User!
-  """
-  記録の日付
-  """
-  recordDate: Date!
-  """
-  記録のコメント
-  """
-  comment: String
-  """
-  記録に関連する写真のURL
-  """
-  photoUrl: String
-  """
-  この記録が投稿された場合、その投稿情報
-  """
-  post: Post
-}
+# # 記録タイプ
+# type Record {
+#   """
+#   記録の一意なID
+#   """
+#   id: ID!
+#   """
+#   この記録が関連する習慣
+#   """
+#   habit: Habit!
+#   """
+#   この記録を作成したユーザー
+#   """
+#   user: User!
+#   """
+#   記録の日付
+#   """
+#   recordDate: Date!
+#   """
+#   記録のコメント
+#   """
+#   comment: String
+#   """
+#   記録に関連する写真のURL
+#   """
+#   photoUrl: String
+#   """
+#   この記録が投稿された場合、その投稿情報
+#   """
+#   post: Post
+# }
 
-# 投稿タイプ
-type Post {
-  """
-  投稿の一意なID
-  """
-  id: ID!
-  """
-  この投稿に紐付く記録
-  """
-  record: Record!
-  """
-  この投稿を作成したユーザー
-  """
-  user: User!
-  """
-  この投稿に対するリアクションリスト
-  """
-  reactions: [Reaction]
-  """
-  この投稿に対するコメントリスト
-  """
-  comments: [Comment]
-}
+# # 投稿タイプ
+# type Post {
+#   """
+#   投稿の一意なID
+#   """
+#   id: ID!
+#   """
+#   この投稿に紐付く記録
+#   """
+#   record: Record!
+#   """
+#   この投稿を作成したユーザー
+#   """
+#   user: User!
+#   """
+#   この投稿に対するリアクションリスト
+#   """
+#   reactions: [Reaction]
+#   """
+#   この投稿に対するコメントリスト
+#   """
+#   comments: [Comment]
+# }
 
-# リアクションタイプ
-type Reaction {
-  """
-  リアクションの一意なID
-  """
-  id: ID!
-  """
-  リアクションが関連する投稿ID
-  """
-  postId: ID!
-  """
-  リアクションを行ったユーザーID
-  """
-  userId: ID!
-}
+# # リアクションタイプ
+# type Reaction {
+#   """
+#   リアクションの一意なID
+#   """
+#   id: ID!
+#   """
+#   リアクションが関連する投稿ID
+#   """
+#   postId: ID!
+#   """
+#   リアクションを行ったユーザーID
+#   """
+#   userId: ID!
+# }
 
-# コメントタイプ
-type Comment {
-  """
-  コメントの一意なID
-  """
-  id: ID!
-  """
-  コメントが関連する投稿ID
-  """
-  postId: ID!
-  """
-  コメントを作成したユーザーID
-  """
-  userId: ID!
-  """
-  コメントの内容
-  """
-  commentText: String!
-}
+# # コメントタイプ
+# type Comment {
+#   """
+#   コメントの一意なID
+#   """
+#   id: ID!
+#   """
+#   コメントが関連する投稿ID
+#   """
+#   postId: ID!
+#   """
+#   コメントを作成したユーザーID
+#   """
+#   userId: ID!
+#   """
+#   コメントの内容
+#   """
+#   commentText: String!
+# }
 
-# 通知タイプ
-type Notification {
-  """
-  通知の一意なID
-  """
-  id: ID!
-  """
-  通知を受け取るユーザーID
-  """
-  userId: ID!
-  """
-  通知を生成したユーザーID（リアクションやコメントを行ったユーザー）
-  """
-  actorId: ID!
-  """
-  通知の種類（リアクション、コメントなど）
-  """
-  notificationType: NotificationType!
-  """
-  通知に関連するオブジェクトID（投稿やコメントなど）
-  """
-  objectId: ID!
-  """
-  通知が既読かどうか
-  """
-  isRead: Boolean!
-}
+# # 通知タイプ
+# type Notification {
+#   """
+#   通知の一意なID
+#   """
+#   id: ID!
+#   """
+#   通知を受け取るユーザーID
+#   """
+#   userId: ID!
+#   """
+#   通知を生成したユーザーID（リアクションやコメントを行ったユーザー）
+#   """
+#   actorId: ID!
+#   """
+#   通知の種類（リアクション、コメントなど）
+#   """
+#   notificationType: NotificationType!
+#   """
+#   通知に関連するオブジェクトID（投稿やコメントなど）
+#   """
+#   objectId: ID!
+#   """
+#   通知が既読かどうか
+#   """
+#   isRead: Boolean!
+# }
 
-# Enum 定義
-enum NotificationType {
-  REACTION
-  COMMENT
-}
+# # Enum 定義
+# enum NotificationType {
+#   REACTION
+#   COMMENT
+# }

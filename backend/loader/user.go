@@ -3,29 +3,13 @@ package loader
 import (
 	"context"
 
-	app "habit/backend"
 	"habit/backend/db_model"
 	"habit/backend/pkg/errors"
 	"habit/backend/service"
 )
 
 func newUserLoader(svc service.User) func(context.Context, []string) ([]*db_model.User, []error) {
-	return func(ctx context.Context, userIDs []string) ([]*db_model.User, []error) {
-		rowMap, err := svc.GetMapByIDs(ctx, defaultTenantID, userIDs)
-		if err != nil {
-			return nil, []error{err}
-		}
-		users := make([]*db_model.User, len(userIDs))
-		errs := make([]error, len(userIDs))
-		for i, userID := range userIDs {
-			if user, ok := rowMap[userID]; ok {
-				users[i] = user
-			} else {
-				errs[i] = app.ErrUserNotFound
-			}
-		}
-		return users, errs
-	}
+	return nil
 }
 
 func LoadUsers(ctx context.Context, userIDs []string) ([]*db_model.User, error) {

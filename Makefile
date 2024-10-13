@@ -105,6 +105,10 @@ backend/test: ## テストを実行
 backend/lint: ## backendのlintを実行
 	@golangci-lint run ./...
 
+.PHONY: webapp/gen ## webappのコード生成
+webapp/gen:
+	pnpm graphql-codegen
+
 .PHONY: webapp/lint
 webapp/lint: ## webappのlintを実行
 	@pnpm lint
