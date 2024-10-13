@@ -32,9 +32,9 @@ function GoalCalendar({
         head_row: "hidden",
         head_cell: "hidden",
         row: "flex w-full mt-1",
-        cell: "h-5 w-5 text-center  text-[10px] p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
+        cell: "h-5 w-5 text-center text-muted-foreground/70 text-[10px] p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
         day: cn(
-          "h-5 w-5 p-0 font-bold flex items-center justify-center text-[10px] text-muted-foreground aria-selected:opacity-100"
+          "h-5 w-5 p-0 font-bold flex items-center justify-center text-[10px]  aria-selected:opacity-100"
         ),
         day_range_end: "day-range-end",
         day_selected: ``,

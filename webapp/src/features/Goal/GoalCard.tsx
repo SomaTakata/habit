@@ -15,8 +15,6 @@ const GoalCard: React.FC<GoalCardProps> = ({ color, goalText, count }) => {
     new Date(2024, 9, 20),
   ];
 
-  console.log(highlightedDates);
-  console.log(new Date());
   return (
     <div
       className={`flex flex-col items-stretch p-2.5 pb-3 gap-3 ${color} rounded-lg max-w-full`}
