@@ -1,7 +1,9 @@
-import React from "react";
+"use client";
+
+import GoalPage from "@/features/Goal/GoalPage";
 
 const page = () => {
-  return <div>page</div>;
+  return <GoalPage />;
 };
 
 export default page;
