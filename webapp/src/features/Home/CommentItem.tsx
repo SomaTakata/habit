@@ -1,5 +1,6 @@
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
 
 interface CommentItemProps {
   username: string;
@@ -14,10 +15,12 @@ const CommentItem: React.FC<CommentItemProps> = ({
 }) => {
   return (
     <div className="flex gap-3">
-      <Avatar className="w-[30px] h-[30px] mt-1">
-        <AvatarImage src="https://github.com/shadcn.png" />
-        <AvatarFallback>CN</AvatarFallback>
-      </Avatar>
+      <Link href="/my-page">
+        <Avatar className="w-[30px] h-[30px] mt-1">
+          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+      </Link>
       <div className="flex flex-col gap-1">
         <div className="flex gap-2 items-center">
           <p className="text-sm">{username}</p>

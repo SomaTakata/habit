@@ -57,12 +57,12 @@ export function Navbar() {
       />
       <NavItem
         name="マイページ"
-        href="/profile"
-        isActive={isActive(pathname, "/profile")}
+        href="/my-page"
+        isActive={isActive(pathname, "/my-page")}
         icon={
           <User
             size={20}
-            fill={isActive(pathname, "/profile") ? "currentColor" : "none"}
+            fill={isActive(pathname, "/my-page") ? "currentColor" : "none"}
           />
         }
       />

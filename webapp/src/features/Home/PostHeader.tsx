@@ -1,5 +1,6 @@
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
 
 interface PostHeaderProps {
   username: string;
@@ -15,10 +16,12 @@ const PostHeader: React.FC<PostHeaderProps> = ({
   return (
     <div className="flex items-end justify-between px-3">
       <div className="flex gap-2 items-center">
-        <Avatar className="w-[30px] h-[30px]">
-          <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
+        <Link href="/my-page">
+          <Avatar className="w-[30px] h-[30px]">
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+        </Link>
         <div className="flex items-center gap-2">
           <p className="text-card-foreground font-semibold text-sm">
             {username}

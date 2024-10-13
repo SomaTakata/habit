@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { MessageSquareText } from "lucide-react";
 import {
   Drawer,
   DrawerContent,
