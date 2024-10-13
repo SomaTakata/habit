@@ -228,9 +228,7 @@ func (err ErrInvalid{{ $e.GoName }}) Error() string {
 {{- end }}
 type {{ $t.GoName }} struct {
 {{ range $t.Fields -}}
-{{- else }}
 {{- field . }}
-{{- end }}
 {{ end }}
 }
 
