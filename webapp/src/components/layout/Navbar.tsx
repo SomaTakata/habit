@@ -8,7 +8,7 @@ import { House, Camera, Flag, Bell, User } from "lucide-react";
 export function Navbar() {
   const pathname = usePathname();
   return (
-    <nav className="flex pt-2 pb-6 px-2.5 fixed bottom-0 left-0 right-0 bg-background border-[0.5px] border-border/80 justify-around">
+    <nav className="flex pt-2 pb-7 px-2.5 fixed bottom-0 left-0 right-0 bg-background border-[0.5px] border-border/80 justify-around">
       <NavItem
         name="ホーム"
         href="/"
