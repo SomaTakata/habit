@@ -34,7 +34,9 @@ const GoalCard: React.FC<GoalCardProps> = ({ color, goalText, count }) => {
           <Flame size={16} />
           <p className="text-sm font-semibold">{count}</p>
         </div>
-        <p className="text-base font-bold text-center">{goalText}</p>
+        <p className="text-base tracking-wider font-bold text-center">
+          {goalText}
+        </p>
       </div>
     </div>
   );
