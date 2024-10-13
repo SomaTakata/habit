@@ -18,7 +18,7 @@ const HeartButton: React.FC<HeartButtonProps> = ({ initialCount }) => {
   return (
     <button
       onClick={handleClick}
-      className={`text-xs bg-secondary min-w-14 text-secondary-foreground items-center justify-center py-1 flex gap-1 px-3 rounded-xl h-fit ${
+      className={`text-xs bg-secondary text-secondary-foreground items-center justify-center py-1 flex gap-1 px-3 rounded-xl h-fit ${
         isLiked ? "text-red-500" : ""
       }`}
     >
