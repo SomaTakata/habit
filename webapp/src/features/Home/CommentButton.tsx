@@ -1,4 +1,5 @@
-import React, { ReactNode } from "react";
+import React from "react";
+import { MessageSquareText } from "lucide-react";
 import {
   Drawer,
   DrawerContent,
@@ -10,13 +11,18 @@ import CommentList from "./CommentList";
 import CommentInput from "./CommentInput";
 
 interface CommentButtonProps {
-  children?: ReactNode;
+  commentCount: number;
 }
 
-const CommentButton: React.FC<CommentButtonProps> = ({ children }) => {
+const CommentButton: React.FC<CommentButtonProps> = ({ commentCount }) => {
   return (
     <Drawer>
-      <DrawerTrigger asChild>{children}</DrawerTrigger>
+      <DrawerTrigger asChild>
+        <button className="bg-secondary text-secondary-foreground items-center justify-center py-1 flex gap-1 px-3 rounded-xl h-fit">
+          <MessageSquareText size={12} />
+          <p className="text-xs">{commentCount}</p>
+        </button>
+      </DrawerTrigger>
       <DrawerContent>
         <div className="flex flex-col h-full relative pb-20">
           <DrawerHeader className="border-b border-border/50">
