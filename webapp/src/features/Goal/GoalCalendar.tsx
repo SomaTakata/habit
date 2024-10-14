@@ -16,7 +16,7 @@ function GoalCalendar({
     <DayPicker
       showOutsideDays={showOutsideDays}
       className={cn(
-        "flex items-center justify-center px-1 py-2 pt-1 w-full max-w-full bg-white rounded-sm",
+        "flex items-center justify-center px-1.5  py-2 pt-1 w-full max-w-full bg-white rounded-sm",
         className
       )}
       classNames={{
@@ -31,7 +31,7 @@ function GoalCalendar({
         table: "border-collapse w-full",
         head_row: "hidden",
         head_cell: "hidden",
-        row: "flex w-full mt-1",
+        row: "grid grid-cols-7 gap-1 w-full mt-1",
         cell: "h-5 w-5 text-center text-muted-foreground/70 text-[10px] p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
         day: cn(
           "h-5 w-5 p-0 font-bold flex items-center justify-center text-[10px]  aria-selected:opacity-100"
