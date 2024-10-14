@@ -5,8 +5,9 @@ import { GoalSetDialogContent } from "./GoalSetModal";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import GoalDetailButton from "./GoalDetailButton";
+import { setSettingOpenProps } from "./GoalPage";
 
-const GoalSetPage = () => {
+const GoalSetPage = ({ setSettingOpen }: setSettingOpenProps) => {
   return (
     <GoalSetDialogContent className="w-full h-full">
       <div className="h-full flex flex-col items-center justify-center gap-20 pt-20 w-full">
@@ -17,7 +18,7 @@ const GoalSetPage = () => {
             </p>
             <Input placeholder="朝ご飯を作る" className="min-h-14" />
           </div>
-          <GoalDetailButton />
+          <GoalDetailButton setSettingOpen={setSettingOpen} />
         </div>
         <div className="flex flex-col gap-3 items-center w-full">
           <p className="text-sm font-bold text-muted-foreground">例えば...</p>

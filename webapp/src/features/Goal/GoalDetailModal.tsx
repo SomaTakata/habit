@@ -22,7 +22,7 @@ const GoalDetailDialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed left-0 top-0 z-50 grid w-full gap-4 border bg-background p-6  duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:slide-in-from-right data-[state=closed]:slide-out-to-right  ",
+        "fixed left-0 top-0 z-50 grid w-full gap-4 border bg-background p-6  duration-700 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:slide-in-from-right data-[state=closed]:slide-out-to-right  ",
         className
       )}
       {...props}

@@ -1,19 +1,26 @@
 "use client";
 
 import * as React from "react";
-import { GoalDetailDialog, GoalDetailDialogTrigger } from "./GoalDetailModal";
+import { GoalDetailDialog } from "./GoalDetailModal";
 import { Button } from "@/components/ui/button";
 import GoalDetailPage from "./GoalDetailPage";
+import { setSettingOpenProps } from "./GoalPage";
 
-const GoalDetailButton = () => {
+const GoalDetailButton = ({ setSettingOpen }: setSettingOpenProps) => {
+  const [detailOpen, setDetailOpen] = React.useState(false);
   return (
-    <GoalDetailDialog>
-      <GoalDetailDialogTrigger>
-        <Button variant="natural" className="px-10">
-          完了
-        </Button>
-      </GoalDetailDialogTrigger>
-      <GoalDetailPage />
+    <GoalDetailDialog open={detailOpen} onOpenChange={setDetailOpen}>
+      <Button
+        variant="natural"
+        className="px-10"
+        onClick={() => setDetailOpen && setDetailOpen(true)}
+      >
+        完了
+      </Button>
+      <GoalDetailPage
+        setDetailOpen={setDetailOpen}
+        setSettingOpen={setSettingOpen}
+      />
     </GoalDetailDialog>
   );
 };

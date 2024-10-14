@@ -1,17 +1,15 @@
 "use client";
 
 import * as React from "react";
-import {
-  GoalDetailDialogClose,
-  GoalDetailDialogContent,
-} from "./GoalDetailModal";
+import { GoalDetailDialogContent } from "./GoalDetailModal";
 import { Flame } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { ModalOpenProps } from "./GoalPage";
 
-const GoalDetailPage = () => {
+const GoalDetailPage = ({ setSettingOpen, setDetailOpen }: ModalOpenProps) => {
   return (
     <GoalDetailDialogContent className="w-full h-full z-50">
       <div className="h-full flex flex-col items-center justify-center gap-14 pt-10 w-full">
@@ -54,11 +52,17 @@ const GoalDetailPage = () => {
             <Input type="time" />
           </div>
         </div>
-        <GoalDetailDialogClose asChild>
-          <Button className="w-full" variant="natural">
-            作成する
-          </Button>
-        </GoalDetailDialogClose>
+        <Button
+          onClick={() => {
+            if (setSettingOpen) setSettingOpen(false);
+
+            if (setDetailOpen) setDetailOpen(false);
+          }}
+          className="w-full"
+          variant="natural"
+        >
+          作成する
+        </Button>
       </div>
     </GoalDetailDialogContent>
   );
