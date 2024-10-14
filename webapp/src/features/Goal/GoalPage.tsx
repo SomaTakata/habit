@@ -3,6 +3,8 @@
 import * as React from "react";
 import { Plus } from "lucide-react";
 import GoalCard from "./GoalCard";
+import { GoalSetDialog, GoalSetDialogTrigger } from "./GoalSetModal";
+import GoalSetButton from "./GoalSetButton";
 
 const GoalPage = () => {
   return (
@@ -10,10 +12,17 @@ const GoalPage = () => {
       <GoalCard color="bg-blue-400" goalText="朝ご飯を食べる" count={12} />
 
       <GoalCard color="bg-orange-400" goalText="昼ご飯を食べる" count={8} />
-
-      <div className="border-2 border-border w-full h-[218px] rounded-md flex items-center justify-center">
-        <Plus size={40} className="text-muted-foreground/50" />
-      </div>
+      <GoalSetDialog>
+        <GoalSetDialogTrigger>
+          <div
+            onClick={() => {}}
+            className="border-2 border-border w-full h-[218px] rounded-md flex items-center justify-center"
+          >
+            <Plus size={40} className="text-muted-foreground/50" />
+          </div>
+        </GoalSetDialogTrigger>
+        <GoalSetButton />
+      </GoalSetDialog>
     </div>
   );
 };
