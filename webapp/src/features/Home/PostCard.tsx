@@ -21,7 +21,7 @@ const PostCard: React.FC<PostCardProps> = ({
   likeCount,
 }) => {
   return (
-    <div className="w-full bg-background py-5 flex flex-col gap-2.5">
+    <div className="w-full bg-background pb-10 flex flex-col gap-2.5">
       <PostHeader username={username} time={time} category={category} />
       <PostImage commentCount={commentCount} likeCount={likeCount} />
       <PostContent content={content} />

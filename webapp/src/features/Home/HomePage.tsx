@@ -3,7 +3,7 @@ import PostCard from "./PostCard";
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col pb-[78px]">
+    <div className="flex flex-col pb-[78px] pt-3">
       <PostCard
         username="Soma Takata"
         time="09:27"
