@@ -35,7 +35,12 @@ const NotificationCard = ({
         <p className="text-sm tracking-wide font-medium">
           <span className="font-semibold">{username}</span>
           {actionMessage}
-          <span className="text-muted-foreground/50 ml-1">{time}</span>
+          <span
+            className="text-muted-foreground/50 ml-1"
+            style={{ whiteSpace: "nowrap" }}
+          >
+            {time}
+          </span>
         </p>
       </div>
       {imageSrc && (
