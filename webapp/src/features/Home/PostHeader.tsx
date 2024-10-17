@@ -6,19 +6,21 @@ interface PostHeaderProps {
   username: string;
   time: string;
   category: string;
+  avatarImageSrc?: string;
 }
 
 const PostHeader: React.FC<PostHeaderProps> = ({
   username,
   time,
   category,
+  avatarImageSrc,
 }) => {
   return (
     <div className="flex items-end justify-between px-3">
       <div className="flex gap-2 items-center">
         <Link href="/my-page">
           <Avatar className="w-[30px] h-[30px]">
-            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarImage src={avatarImageSrc} />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
         </Link>
