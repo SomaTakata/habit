@@ -7,14 +7,13 @@ import {
 } from "./NotificationTabs";
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
 
 const NotificationsPage = () => {
   return (
     <div className="flex flex-col p-3 px-5  pb-[78px]">
       <NotificationTabs
-        defaultValue="account"
+        defaultValue="all"
         className="flex flex-col items-center "
       >
         <NotificationTabsList>
