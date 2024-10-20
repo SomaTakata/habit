@@ -18,7 +18,6 @@ export interface GoalSetProps {
 
 const GoalPage = () => {
   const [settingOpen, setSettingOpen] = React.useState(false);
-  console.log(settingOpen);
   return (
     <div className="grid grid-cols-2 gap-2 justify-between p-3 pb-24">
       <GoalCard color="bg-blue-400" goalText="朝ご飯を食べる" count={12} />
