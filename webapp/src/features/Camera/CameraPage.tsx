@@ -13,7 +13,7 @@ const CameraPage = () => {
     <div className="relative flex flex-col gap-10 p-5 pb-24 h-full">
       <ChevronDown
         onClick={() => router.back()}
-        className="absolute left-5 top-5 h-7 w-7"
+        className="absolute left-5 top-5 h-7 w-7 z-20"
       />
       <div className="w-full absolute top-5 right-0 left-0 text-2xl font-bold justify-center text-center">
         HabitLink
